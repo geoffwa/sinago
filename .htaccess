@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+<Directory Slim>
+  Order deny,allow
+  Deny from all
+</Directory>
+
+<Directory nagios>
+  Order deny,allow
+  Deny from all
+</Directory>
