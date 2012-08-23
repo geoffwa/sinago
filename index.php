@@ -17,7 +17,8 @@ function create_host_check($host_name) {
 
   $base_path = $app->config('nagios.checks.base_path');
 
-  $config = new Config($base_path, $host_name);
+  $config = new Config($base_path, 'host');
+  $config->host_name = $host_name;
   $config->write_out();
 }
 
