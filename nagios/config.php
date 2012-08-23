@@ -66,7 +66,7 @@ class Config {
     $dir = dirname($filename);
 
     if (!file_exists($dir)) {
-      mkdir(dirname($filename), 0777, true);
+      mkdir($dir, 0777, true);
     }
 
     $file = fopen($this->filename(), 'w');
