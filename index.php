@@ -1,36 +1,27 @@
 <?php
-require 'Slim/Slim.php';
 
-//With default settings
+require 'Slim/Slim.php';
+require 'nagios/config.php';
+
 $app = new Slim();
 
-//With custom settings
 $app = new Slim(array(
   'log.enable' => true,
   'log.path' => './logs',
   'log.level' => 4,
- // 'view' => 'MyCustomViewClassName'
+  'nagios.checks.base_path' => '/tmp/nagios'
 ));
 
-//GET route
-$app->get('/hello/:name', function ($name) {
-    echo "Hello, $name";
-});
+function create_host_check($host_name) {
+  $app = Slim::getInstance();
 
-//POST route
-$app->post('/person', function () {
-    //Create new Person
-});
+  $base_path = $app->config('nagios.checks.base_path');
 
-//PUT route
-$app->put('/person/:id', function ($id) {
-    //Update Person identified by $id
-});
+  $config = new Config($base_path, $host_name);
+  $config->write_out();
+}
 
-//DELETE route
-$app->delete('/person/:id', function ($id) {
-    //Delete Person identified by $id
-});
+$app->put('/hosts/:host_name', 'create_host_check');
 
 $app->run();
 
