@@ -9,7 +9,7 @@ $app = new Slim(array(
   'log.enable' => true,
   'log.path' => './logs',
   'log.level' => 4,
-  'nagios.checks.base_path' => '/tmp/nagios'
+  'nagios.checks.base_path' => '/tmp/nagios-checks'
 ));
 
 function create_host_check($host_name) {
