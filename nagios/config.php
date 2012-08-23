@@ -20,23 +20,6 @@ class Config {
     return in_array($type, self::valid_types());
   }
 
-  // get all the things in a particular directory
-  private static function all_entries_in($dir) {
-    $entries = array();
-    if ($handle = opendir($dir)) {
-      while (($entry = readdir($dir)) !== false) {
-        if ($entry == '.' || $entry == '..') {
-          continue;
-        }
-        array_push($entries, $entry);
-      }
-    }
-    else {
-      // TODO - error throwing
-    }
-    return $entries;
-  }
-
   // get the currently set attributes that we should write out
   private function writable_attributes() {
     $writable = $this->attributes;
@@ -65,10 +48,6 @@ class Config {
   // get the filename ->write_out will write to
   public function filename() {
     $pieces = array($this->base_path);
-
-    if (isset($this->datacenter)) {
-      array_push($pieces, $this->datacenter);
-    }
 
     array_push($pieces, $this->host_name);
     if ($this->type === 'host') {
