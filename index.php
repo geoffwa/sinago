@@ -29,7 +29,7 @@ function create_host_check($host_name) {
   $config->write_out();
 }
 
-function create_service_check($host_name,$service_description) {
+function create_service_check($host_name) {
   $app = Slim::getInstance();
 
   $base_path = $app->config('nagios.checks.base_path');
