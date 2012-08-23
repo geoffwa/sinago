@@ -3,8 +3,6 @@
 require 'Slim/Slim.php';
 require 'nagios/config.php';
 
-$app = new Slim();
-
 $app = new Slim(array(
   'log.enable' => true,
   'log.path' => './logs',
