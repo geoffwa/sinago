@@ -7,6 +7,11 @@ RewriteRule ^(.*)$ index.php [QSA,L]
   Deny from all
 </Directory>
 
+<Directory Twig>
+  Order deny,allow
+  Deny from all
+</Directory>
+
 <Directory nagios>
   Order deny,allow
   Deny from all
