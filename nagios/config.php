@@ -16,9 +16,25 @@ class Config {
   private static function valid_types() {
     return array('host', 'service');
   }
-
   private static function is_valid_type($type) {
     return in_array($type, self::valid_types());
+  }
+
+  // get all the things in a particular directory
+  private static function all_entries_in($dir) {
+    $entries = array();
+    if ($handle = opendir($dir)) {
+      while (($entry = readdir($dir)) !== false) {
+        if ($entry == '.' || $entry == '..') {
+          continue;
+        }
+        array_push($entries, $entry);
+      }
+    }
+    else {
+      // TODO - error throwing
+    }
+    return $entries;
   }
 
   // get the currently set attributes that we should write out
